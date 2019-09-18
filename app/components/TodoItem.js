@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 //@@ -0,0 +1,31 @@
+=======
+>>>>>>> 541f7ad26e40497301302e4f14c5811ece43bc76
 // app/components/TodoItem.js
 
 import React from "react"

@@ -1,22 +1,28 @@
-<<<<<<< HEAD
-//@@ -0,0 +1,31 @@
-=======
->>>>>>> 541f7ad26e40497301302e4f14c5811ece43bc76
+
 // app/components/TodoItem.js
 
 import React from "react"
-import {View, Text, StyleSheet, Dimensions} from "react-native"
+import {View, Text, StyleSheet, Dimensions, TouchableOpacity} from "react-native"
+import {AntDesign} from "@expo/vector-icons" // expo가 제공해주는 component를 import 합시다.
 
+const {width, height} = Dimensions.get('window');  //Dimensions 는 현재 App이 띄어지는
+                                                        // 화면의 width와 height를 받아와 저장해준다.
 const TodoItem = () => (
     <View style = {StyleSheet.todoContainer}>
         <View>
+            <View style = {styles.makerow}>
+
+            <TouchableOpacity>
+                <AntDesign name = 'checkcircle' size = {20} style = {styles.checkbtn}/> {/* 주석처리 확인 */}
+            </TouchableOpacity>
             <Text style = {StyleSheet.todoitem}>할일 1</Text>
+            </View>
         </View>
 
     </View>
 );
 // 아래의 코드없이 샐행해보구 추가하고 실행해보세요! 차이가 보이실껍니다.
-const {width,height} = Dimensions.get('window');  //Dimensions 는 현재 App이 띄어지는
+//const {width, height} = Dimensions.get('window');  //Dimensions 는 현재 App이 띄어지는
                                                         // 화면의 width와 height를 받아와 저장해준다.
 const styles = StyleSheet.create({
     todoContainer:{
@@ -29,6 +35,17 @@ const styles = StyleSheet.create({
 
     todoitem : {
         fontSize : 20,
+    },
+    lineContainer :{
+        flexDirection:'row',
+        justifyContent : 'space-between',  // 가로 정렬하는데 compo사이를 균등하게 space를 구분
+        alignItems : 'center', // 세로 정렬
+    },
+    checkbtn : {
+        marginRight : 20, // checkbtn에서 알 일을 오른쪽으로 떨어트리기 위햇 사용
+    },
+    makerow:{
+        flexDirection:'row',
     }
 })
 

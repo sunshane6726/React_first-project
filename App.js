@@ -14,7 +14,7 @@ export default function App() { // App이라는 component를 만들어 주면서
             <Header/>
         </View>
 
-        <View style = {styles.todoContainer}>
+        <View style = {styles.input}>
           <SubTitle title = "할 일을 입력해주세요"/> {/* SubTitle compo on title props connection */}
           <Input/>
         </View>
@@ -46,9 +46,9 @@ const styles = StyleSheet.create({ // styles 이라는 객체를 만들뒤에
     alignItems: 'center',
   },
 
-  subContainer:{
-    marginLeft:20, // SubTitle Component에서 설정해주면 되지 왜 여기서 해주나요?
-                    // App.js 메인화면의 Layout을 잡아주기 위해 여기서 했습니다.
-  },
+ // subContainer:{
+ //   marginLeft:20, // SubTitle Component에서 설정해주면 되지 왜 여기서 해주나요?
+//                  // App.js 메인화면의 Layout을 잡아주기 위해 여기서 했습니다.
+// },
 
 });

@@ -1,10 +1,16 @@
 import React from 'react'; // React를 사용할 수 있게 import(가져오기)
+<<<<<<< HEAD
 import {StyleSheet, View, Text, Dimensions } from 'react-native'; // RN이 제공해주는 기본 component import
 import Header from './app/components/Header';
 import SubTitle from './app/components/SubTitle'; // relative root
 import Input from "./app/components/InputBox";
 import TodoItem from './app/components/TodoItem';
 
+=======
+import { StyleSheet, Text, View } from 'react-native'; // RN이 제공해주는 기본 component import
+import Header from './app/components/Header';
+import SubTitle from './app/components/SubTitle';
+>>>>>>> parent of 7c1d81b... Props no test
 
 // default로 내보낸것을 Header라는 이름으로 가져옵니다.
 export default function App() { // App이라는 component를 만들어 주면서 export로 모듈화를 시킵니다.
@@ -14,6 +20,7 @@ export default function App() { // App이라는 component를 만들어 주면서
             <Header/>
         </View>
 
+<<<<<<< HEAD
         <View style = {styles.input}>
           <SubTitle title = "할 일을 입력해주세요"/> {/* SubTitle compo on title props connection */}
           <Input/>
@@ -23,6 +30,10 @@ export default function App() { // App이라는 component를 만들어 주면서
           <SubTitle title = "해야 할 일 목록"/>
           <TodoItem/>
           <TodoItem/>
+=======
+        <View style = {styles.subContainer}>
+          <SubTitle></SubTitle>
+>>>>>>> parent of 7c1d81b... Props no test
         </View>  
      
     </View> // 아래에서 선언한  스타일을 적용 시켜줍니다. (JSX 방식 차용)

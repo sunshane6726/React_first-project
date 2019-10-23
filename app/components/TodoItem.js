@@ -22,7 +22,7 @@ const TodoItem = () => (
     </View>
 );
 // 아래의 코드없이 샐행해보구 추가하고 실행해보세요! 차이가 보이실껍니다.
-//const {width, height} = Dimensions.get('window');  //Dimensions 는 현재 App이 띄어지는
+//it -m const {width, height} = Dimensions.get('window');  //Dimensions 는 현재 App이 띄어지는
                                                         // 화면의 width와 height를 받아와 저장해준다.
 const styles = StyleSheet.create({
     todoContainer:{

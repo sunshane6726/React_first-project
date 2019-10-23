@@ -3,9 +3,9 @@
 import React from "react";
 import {View, Text, StyleSheet} from 'react-native'
 
-const SubTitle = ({title}) => ( // put down title from Props on argument of function 
+const SubTitle = () => (
     <View>
-        <Text style ={styles.subTitleText}>{title}</Text>
+        <Text style = {styles.subTitleText}>해야 할일</Text>
     </View>
 );
 

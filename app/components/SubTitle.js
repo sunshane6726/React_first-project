@@ -3,11 +3,13 @@
 import React from "react";
 import {View, Text, StyleSheet} from 'react-native'
 
-const SubTitle = () => (
-    <View>
-        <Text style = {styles.subTitleText}>해야 할일</Text>
-    </View>
-);
+export default function SubTitle({title}){
+    return (
+        <View>
+            <Text style = {styles.subTitleText}>{title}</Text>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     subTitleText: {
@@ -17,4 +19,3 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SubTitle;

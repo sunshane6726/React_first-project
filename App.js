@@ -2,9 +2,26 @@ import React from 'react'; // React를 사용할 수 있게 import(가져오기)
 import { StyleSheet, Text, View } from 'react-native'; // RN이 제공해주는 기본 component import
 import Header from './app/components/Header';
 import SubTitle from './app/components/SubTitle';
+import Input from './app/components/Input';
+import Listitem from './app/components/Listitem';
+
 
 // default로 내보낸것을 Header라는 이름으로 가져옵니다.
-export default function App() { // App이라는 component를 만들어 주면서 export로 모듈화를 시킵니다.
+export default class App extends React.Component { // App이라는 component를 만들어 주면서 export로 모듈화를 시킵니다. state 은 class만 다룰수가 있다.
+  constructor(props){
+    super(props);
+    this.state = {
+      todos : [
+        {
+        title : "나는 공부를 하지 않아"
+        },
+
+        {
+          title : "일찍 일어 날래"
+        }      
+      ]
+  }
+  render(){
   return (
     <View style={styles.container}>
         <View style = {styles.headercentered}>
@@ -12,15 +29,26 @@ export default function App() { // App이라는 component를 만들어 주면서
         </View>
 
         <View style = {styles.subContainer}>
-          <SubTitle></SubTitle>
-        </View>  
+          <SubTitle title ="해야할일"/>
+          <Input/>
+        </View>
+
+        <View style = {styles.subContainer}>
+          <SubTitle title ="해야 할 목록"/>
+          <Listitem name = "코딩하기"/>
+          <Listitem name = "운동하기"/>
+        </View>
+        
+          
      
     </View> // 아래에서 선언한  스타일을 적용 시켜줍니다. (JSX 방식 차용)
   ); // App.js가 메인화면이라서 Text따라 메인화면도 바뀐다.
+  }
+}
 
-  {/* 주석처리 다른 방식을 차용한다.*/ }
+  //{/* 주석처리 다른 방식을 차용한다.*/ }
   // Ctrl + /로 차용해서 주석처리를 사용할수 가 있다.
-} 
+
 
 
 const styles = StyleSheet.create({ // styles 이라는 객체를 만들뒤에 

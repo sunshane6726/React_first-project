@@ -1,5 +1,5 @@
 import React from 'react'; // React를 사용할 수 있게 import(가져오기)
-import { StyleSheet, Text, View, FlatList } from 'react-native'; // RN이 제공해주는 기본 component import
+import { StyleSheet, Text, View, FlatList, AsyncStorage } from 'react-native'; // RN이 제공해주는 기본 component import
 import Header from './app/components/Header';
 import SubTitle from './app/components/SubTitle';
 import Input from './app/components/Input';
@@ -13,12 +13,23 @@ export default class App extends React.Component { // App이라는 component를 
     this.state = { // this = app // 객체모양
       inputValue : '',
       todos : [ // 리스트 모양 
-        
-        
       ]
     }
+    
+  }
+  componentWillMount(){
+    this.getData()
+  }
+  storeData=()=>{
+    AsyncStorage.setItem('@todo:state',JSON.stringify(this.state));
   }
 
+  getData = () =>{
+      AsyncStorage.getItem('@todo:state').then((state)=>{ // promise  getitem을 가져온다음에 실행하라 추가자료를 확인하라
+        if(state !== null)
+          this.setState(JSON.parse(state)); // string 형식을 오브젝트 형식으로 바꾸어 준다.
+    })
+  }
   _makeTodoItem = ({item,index})=>{
     return(
       <Listitem 
@@ -27,12 +38,12 @@ export default class App extends React.Component { // App이라는 component를 
       changeComplete = {()=> { // changeComplete 함수를 만들아야 한다.
         const newTodo = [...this.state.todos]
         newTodo[index].iscomplete = !newTodo[index].iscomplete // ![true] ==> [false] 반대값을 뜻한다.
-        this.setState({todos:newTodo})
+        this.setState({todos:newTodo}, this.storeData)
       }}
       deleteItem = {()=> { // changeComplete 함수를 만들아야 한다.
         const newTodo = [...this.state.todos]
         newTodo.splice(index,1) // 그 부분끼리 잘라라 자바스크립트 문법이다. 한개삭제
-        this.setState({todos:newTodo})
+        this.setState({todos:newTodo}, this.storeData)
       }}/>
     );
     }
@@ -51,7 +62,7 @@ export default class App extends React.Component { // App이라는 component를 
       this.setState({
         inputValue : "", // 새로고침이 되어야한다. 공백
         todos : prevTodo.concat(newTodo) // 메소드로 _changeText, _addTodoItem 선언
-      });
+      }, this.storeData);
     }
   }
   render(){
@@ -61,8 +72,8 @@ export default class App extends React.Component { // App이라는 component를 
               <Header/>
           </View>
 
-          <View style = {styles.subContainer}>
-            <SubTitle title ="해야할일"/>
+          <View style = {styles.inputContainer}>
+            <SubTitle title ="To-Do 입력하기"/>
             <Input
               value = {this.state.inputValue}
               changeText = {this._changeText} 
@@ -70,7 +81,7 @@ export default class App extends React.Component { // App이라는 component를 
           </View>
 
           <View style = {styles.subContainer}> 
-            <SubTitle title ="해야 할 목록"/>
+            <SubTitle title ="To-Do List"/>
             
 
             <FlatList
@@ -102,11 +113,17 @@ const styles = StyleSheet.create({ // styles 이라는 객체를 만들뒤에
   }, // 객체가 끝난뒤에 , 를 적어주면 나중에 객체사이에 , 로인한 Error가 줄어들어서 조심해서 사용합시다.
   headercentered :{
     alignItems: 'center',
-  },
+    justifyContent : 'center'
 
- // subContainer:{
- //   marginLeft:20, // SubTitle Component에서 설정해주면 되지 왜 여기서 해주나요?
-//                  // App.js 메인화면의 Layout을 잡아주기 위해 여기서 했습니다.
-// },
+  },
+  inputContainer:{
+    marginLeft : 20
+  },
+  
+
+  subContainer:{
+    marginLeft:20, // SubTitle Component에서 설정해주면 되지 왜 여기서 해주나요?
+    marginTop:20,              // App.js 메인화면의 Layout을 잡아주기 위해 여기서 했습니다.
+ }
 
 });

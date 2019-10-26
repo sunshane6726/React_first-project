@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     subTitleText: {
         color: '#3f4e66',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontWeight: '600',
     }
 })
 

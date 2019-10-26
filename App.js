@@ -14,6 +14,7 @@ export default class App extends React.Component { // App이라는 component를 
       inputValue : '',
       todos : [ // 리스트 모양 
         
+        
       ]
     }
   }
@@ -26,6 +27,11 @@ export default class App extends React.Component { // App이라는 component를 
       changeComplete = {()=> { // changeComplete 함수를 만들아야 한다.
         const newTodo = [...this.state.todos]
         newTodo[index].iscomplete = !newTodo[index].iscomplete // ![true] ==> [false] 반대값을 뜻한다.
+        this.setState({todos:newTodo})
+      }}
+      deleteItem = {()=> { // changeComplete 함수를 만들아야 한다.
+        const newTodo = [...this.state.todos]
+        newTodo.splice(index,1) // 그 부분끼리 잘라라 자바스크립트 문법이다. 한개삭제
         this.setState({todos:newTodo})
       }}/>
     );

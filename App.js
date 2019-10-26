@@ -11,6 +11,7 @@ export default class App extends React.Component { // App이라는 component를 
   constructor(props){ // 같이 생성해주는 초기값 생성값
     super(props);
     this.state = { // this = app // 객체모양
+      inputValue : '',
       todos : [ // 리스트 모양 
         {
         title : "나는 공부를 하지 않아" 
@@ -29,6 +30,24 @@ export default class App extends React.Component { // App이라는 component를 
 
     )
     }
+
+  _changeText=(value)=>{
+    this.setState({inputValue:value});
+
+  }
+
+  _addTodoItem = () => {
+    if(this.state.inputValue !== ""){
+      const prevTodo = this.state.todos;
+
+      const newTodo = {title : this.state.inputValue};
+
+      this.setState({
+        inputValue : "", // 새로고침이 되어야한다. 공백
+        todos : prevTodo.concat(newTodo) // concat 두개의 리스트를 이어 붙인다는 개념이다.
+      });
+    }
+  }
   render(){
     return (
       <View style={styles.container}>
@@ -38,14 +57,15 @@ export default class App extends React.Component { // App이라는 component를 
 
           <View style = {styles.subContainer}>
             <SubTitle title ="해야할일"/>
-            <Input/>
+            <Input
+              value = {this.state.inputValue}
+              changeText = {this._changeText} // 메소드로 _changeText, _addTodoItem 선언
+              addTodoItem = {this._addTodoItem}/>
           </View>
 
           <View style = {styles.subContainer}> 
             <SubTitle title ="해야 할 목록"/>
-            <Listitem name = "코딩하기"/>
-            <Listitem name = "운동하기"/>
-            <Listitem name = {this.state.todos[0].title}></Listitem> 
+            
 
             <FlatList
               data = {this.state.todos}
@@ -61,6 +81,7 @@ export default class App extends React.Component { // App이라는 component를 
   //{/* 주석처리 다른 방식을 차용한다.*/ }
   // Ctrl + /로 차용해서 주석처리를 사용할수 가 있다.
   // todolist 다 지우기
+  // 원래 key 값을 index로 넣으면 안되기때문에 에러가 발생한다 에러를 해결하시고 싶은 분은 원래 공식 React.js 사이트에서 직접 해결하던지 추가자료를 보고 해결하면된다.
 
 
 const styles = StyleSheet.create({ // styles 이라는 객체를 만들뒤에 

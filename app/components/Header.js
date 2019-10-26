@@ -5,7 +5,7 @@ import {StyleSheet, View, Text} from 'react-native';
 
 const Header = () => ( // Arrow function을 사용 (return 값을 ) 이용
     <View style={styles.headerContainer}>
-        <Text style = {styles.headerText}>제목입니다. 환영하기test</Text>
+        <Text style = {styles.headerText}>할일 체크리스트</Text>/Text>
     </View>
 );
 

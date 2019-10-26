@@ -13,22 +13,22 @@ export default class App extends React.Component { // App이라는 component를 
     this.state = { // this = app // 객체모양
       inputValue : '',
       todos : [ // 리스트 모양 
-        {
-        title : "나는 공부를 하지 않아" 
-        },
-
-        {
-          title : "일찍 일어 날래"
-        }      
+        
       ]
     }
   }
 
   _makeTodoItem = ({item,index})=>{
     return(
-      <Listitem name = {item.title} />
-
-    )
+      <Listitem 
+      name = {item.title} 
+      isComplete =  {item.iscomplete}
+      changeComplete = {()=> { // changeComplete 함수를 만들아야 한다.
+        const newTodo = [...this.state.todos]
+        newTodo[index].iscomplete = !newTodo[index].iscomplete // ![true] ==> [false] 반대값을 뜻한다.
+        this.setState({todos:newTodo})
+      }}/>
+    );
     }
 
   _changeText=(value)=>{
@@ -37,14 +37,14 @@ export default class App extends React.Component { // App이라는 component를 
   }
 
   _addTodoItem = () => {
-    if(this.state.inputValue !== ""){
+    if(this.state.inputValue !== ""){ 
       const prevTodo = this.state.todos;
 
-      const newTodo = {title : this.state.inputValue};
+      const newTodo = {title : this.state.inputValue, iscomplete : false};
 
       this.setState({
         inputValue : "", // 새로고침이 되어야한다. 공백
-        todos : prevTodo.concat(newTodo) // concat 두개의 리스트를 이어 붙인다는 개념이다.
+        todos : prevTodo.concat(newTodo) // 메소드로 _changeText, _addTodoItem 선언
       });
     }
   }
@@ -59,7 +59,7 @@ export default class App extends React.Component { // App이라는 component를 
             <SubTitle title ="해야할일"/>
             <Input
               value = {this.state.inputValue}
-              changeText = {this._changeText} // 메소드로 _changeText, _addTodoItem 선언
+              changeText = {this._changeText} 
               addTodoItem = {this._addTodoItem}/>
           </View>
 
@@ -82,7 +82,8 @@ export default class App extends React.Component { // App이라는 component를 
   // Ctrl + /로 차용해서 주석처리를 사용할수 가 있다.
   // todolist 다 지우기
   // 원래 key 값을 index로 넣으면 안되기때문에 에러가 발생한다 에러를 해결하시고 싶은 분은 원래 공식 React.js 사이트에서 직접 해결하던지 추가자료를 보고 해결하면된다.
-
+  
+  
 
 const styles = StyleSheet.create({ // styles 이라는 객체를 만들뒤에 
   container: { //꾸미고 싶은 속성들을 객체화 시켜서 객체안에 저장시킵니다.
